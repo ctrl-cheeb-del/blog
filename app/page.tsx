@@ -48,16 +48,16 @@ export default function Page() {
           {posts.map((post) => (
             <motion.div
               key={post.slug}
-              className="flex items-center gap-6 whitespace-nowrap"
+              className="flex flex-wrap md:flex-nowrap items-baseline md:items-center gap-x-4 md:gap-6" 
               variants={itemVariants}
             >
               <span className="text-gray-500">-rw-r--r--</span> 
-              <span className="text-gray-500">1</span> 
-              <span className="text-gray-400">art</span> 
-              <span className="text-gray-400">staff</span> 
-              <span className="text-gray-500 w-2 text-right">{post.size}</span> 
+              <span className="text-gray-500 hidden md:inline-block">1</span> 
+              <span className="text-gray-400 hidden md:inline-block">art</span> 
+              <span className="text-gray-400 hidden md:inline-block">staff</span> 
+              <span className="text-gray-500 w-10 text-right">{post.size}</span> 
               <span className="text-gray-500 w-20 text-right">{post.date}</span> 
-              <Link href={`/${post.slug}`} className="flex items-center gap-2 text-purple-300 hover:text-purple-400 hover:underline flex-shrink min-w-0">
+              <Link href={`/${post.slug}`} className="flex items-center text-purple-300 hover:text-purple-400 hover:underline ">
                   <FileText size={18} className="flex-shrink-0"/>
                   <span className="truncate">{post.slug}</span> 
               </Link>
