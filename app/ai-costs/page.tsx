@@ -1,4 +1,5 @@
 import BlogPage from '../../components/BlogPage'
+import { Metadata } from 'next';
 
 const post = {
   title: "AI is only going to get more expensive, not cheaper",
@@ -7,6 +8,38 @@ const post = {
   readTime: "3 min",
   imageUrl: "/claude-cost.png",
   imageAlt: "Displays cost of a Claude Code session",
+  description: "If you think Claude 3.7 Max is 'too expensive' you're NGMI.", 
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { title, description, imageUrl } = post;
+
+  const siteBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.freebrey.art';
+  const ogImageUrl = `${siteBaseUrl}${imageUrl}`;
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: 'article',
+      url: `${siteBaseUrl}/ai-costs`,
+      images: [
+        {
+          url: ogImageUrl,
+          alt: post.imageAlt,
+        },
+      ],
+      siteName: 'Blog - Art Freebrey',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+      images: [ogImageUrl],
+    },
+  }
 }
 
 export default function AiCostsPage() {
